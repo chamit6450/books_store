@@ -1,18 +1,18 @@
-
-
+const mongoose = require("mongoose")
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 5000
 const cors = require('cors')
 require('dotenv').config();
+const jwt = require('jsonwebtoken')
+app.use(express.json())
 
-//middlewares
 app.use(cors());
 app.use(express.json());
 
 
 app.get('/',(req,res)=>{
-    res.send('Hello World')
+    res.send('')
 })
 
 
@@ -103,16 +103,11 @@ async function run() {
         res.send(result);
     })
     
-
-
-
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Book-store is now connected to database");
   } finally {
-    // Ensures that the client will close when you finish/error
-    // await client.close();
-    //since we dont want it to get closed after we finish we commented it
+   
   }
 }
 run().catch(console.dir);
